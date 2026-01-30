@@ -3,18 +3,25 @@
 @tailwind utilities;
 
 @theme {
-  --font-cormorant: 'Cormorant Garamond', serif;
-  --font-work-sans: 'Work Sans', sans-serif;
+  --font-fira-code: 'Fira Code', monospace;
+  --font-jetbrains: 'JetBrains Mono', monospace;
 }
 
 :root {
-  --color-bg: #faf9f6;
-  --color-text: #1a1a1a;
-  --color-accent: #c84b31;
-  --color-secondary: #2d4263;
-  --color-muted: #6b7280;
-  --color-border: #e5e5e5;
+  --color-bg: #0a0a0f;
+  --color-bg-elevated: #12121a;
+  --color-text: #e4e4e7;
+  --color-text-muted: #a1a1aa;
+  --color-accent: #00ff88;
+  --color-accent-glow: rgba(0, 255, 136, 0.3);
+  --color-secondary: #0ea5e9;
+  --color-purple: #a855f7;
+  --color-border: #27272a;
+  --color-border-bright: #3f3f46;
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --gradient-mesh: radial-gradient(at 40% 20%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+                   radial-gradient(at 80% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                   radial-gradient(at 0% 50%, rgba(0, 255, 136, 0.1) 0px, transparent 50%);
 }
 
 * {
@@ -32,6 +39,40 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-mesh);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+  pointer-events: none;
+  animation: gridPulse 20s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }
 
 /* Animations */
@@ -122,4 +163,146 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
+}
+
+/* New Content majorly*/
+
+/* Glassmorphism */
+.glass {
+  background: rgba(18, 18, 26, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-bright);
+}
+
+.glass-strong {
+  background: rgba(18, 18, 26, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border-bright);
+}
+
+/* Glow effects */
+.glow-accent {
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+.glow-accent-strong {
+  box-shadow: 0 0 40px var(--color-accent-glow), 0 0 60px var(--color-accent-glow);
+}
+
+/* Terminal effect */
+.terminal {
+  font-family: 'Fira Code', monospace;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+/* Bento card */
+.bento-card {
+  background: rgba(18, 18, 26, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--color-accent-glow), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--transition-smooth);
+  pointer-events: none;
+}
+
+.bento-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+/* Tech accent bar */
+.accent-bar {
+  position: relative;
+}
+
+.accent-bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-secondary), var(--color-purple));
+  animation: accentSlide 3s ease-in-out infinite;
+}
+
+@keyframes accentSlide {
+  0%, 100% { transform: translateY(-100%); }
+  50% { transform: translateY(100%); }
+}
+
+/* Floating particles */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  background: var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  33% {
+    transform: translate(100px, -100px) scale(1.2);
+    opacity: 0.5;
+  }
+  66% {
+    transform: translate(-50px, -200px) scale(0.8);
+    opacity: 0.2;
+  }
+}
+
+/* Code-like text animation */
+.code-cursor::after {
+  content: '▊';
+  animation: blink 1s step-end infinite;
+  color: var(--color-accent);
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }

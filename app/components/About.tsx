@@ -28,18 +28,18 @@ export default function About() {
 
   const skills = {
     Languages: ['Python', 'Java', 'C/C++', 'JavaScript/TypeScript', 'SQL'],
-    'Machine Learning & AI': [
+    'ML & AI': [
       'TensorFlow / PyTorch',
       'Scikit-learn',
       'OpenCV',
-      'YOLO / Object Detection',
+      'YOLO',
       'Neural Networks',
     ],
-    'Frameworks & Tools': ['React / Next.js', 'Node.js', 'Git / GitHub', 'Docker', 'ROS (Robot Operating System)'],
-    'Core Concepts': [
-      'Data Structures & Algorithms',
+    'Frameworks': ['React / Next.js', 'Node.js', 'Git', 'Docker', 'ROS'],
+    'Concepts': [
+      'Data Structures',
       'Computer Vision',
-      'Robotics & Automation',
+      'Robotics',
       'System Design',
       'Software Engineering',
     ],
@@ -49,7 +49,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-32 px-12 max-w-[1400px] mx-auto"
+      className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -57,83 +57,109 @@ export default function About() {
       }}
     >
       {/* Header */}
-      <div className="mb-24">
-        <h2 className="font-cormorant text-[3.5rem] font-semibold mb-4 text-[var(--color-text)]">
-          About Me
-        </h2>
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-[var(--color-accent)] font-mono text-sm">01.</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text)]">
+            About <span className="text-[var(--color-accent)]">Me</span>
+          </h2>
+          <div className="h-[1px] flex-1 bg-[var(--color-border)] ml-4"></div>
+        </div>
       </div>
 
-      {/* Intro Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr] gap-20 mb-24 items-start">
-        {/* Image */}
-        <div className="relative w-full aspect-[3/4] bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-secondary)] rounded-sm overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.1)]">
-          <div className="w-full h-full flex items-center justify-center font-cormorant text-xl text-white/30 text-center p-8">
-            Your photo here
+      {/* Bento Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+        {/* Main intro card - spans 2 columns */}
+        <div className="lg:col-span-2 bento-card rounded-2xl p-8 space-y-6 accent-bar">
+          <div>
+            <div className="text-sm font-mono text-[var(--color-text-muted)] mb-2">// whoami</div>
+            <h3 className="text-2xl font-bold text-[var(--color-text)] mb-4">Computer Science @ UW-Madison</h3>
+          </div>
+          
+          <div className="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
+            <p>
+              I'm a computer science student driven by curiosity about how machines can perceive, learn, 
+              and interact with the world. My journey spans machine learning, computer vision, and robotics.
+            </p>
+            <p>
+              What excites me most is building systems that bridge theoretical concepts with real-world 
+              applications—whether it's developing computer vision pipelines or experimenting with autonomous navigation.
+            </p>
+            <p>
+              I believe in learning through building, iterating through failure, and maintaining a systematic 
+              approach to complex problems.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2 pt-4">
+            {['Problem Solver', 'Fast Learner', 'Team Player', 'Open Source'].map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1.5 bg-[var(--color-bg-elevated)] border border-[var(--color-border)] rounded-full text-xs text-[var(--color-text-muted)] font-mono"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Text */}
-        <div className="pt-8">
-          <p className="text-[1.15rem] leading-[1.9] text-[var(--color-muted)] mb-6">
-            I'm a computer science student at the University of Wisconsin-Madison, driven by a deep
-            curiosity about how machines can perceive, learn, and interact with the world. My
-            academic journey has been shaped by hands-on exploration across machine learning,
-            computer vision, and robotics.
-          </p>
-          <p className="text-[1.15rem] leading-[1.9] text-[var(--color-muted)] mb-6">
-            What excites me most is the challenge of building systems that bridge theoretical
-            concepts with real-world applications. Whether it's developing computer vision pipelines
-            or experimenting with autonomous navigation, I approach each project as an opportunity to
-            understand the underlying principles deeply.
-          </p>
-          <p className="text-[1.15rem] leading-[1.9] text-[var(--color-muted)]">
-            I believe in learning through building, iterating through failure, and maintaining a
-            systematic approach to complex problems. My technical interests span from low-level image
-            processing to high-level system architecture, always with an emphasis on creating
-            solutions that are both elegant and practical.
-          </p>
+        {/* Education card */}
+        <div className="bento-card rounded-2xl p-8 flex flex-col justify-between">
+          <div>
+            <div className="text-sm font-mono text-[var(--color-text-muted)] mb-4">// education</div>
+            <h4 className="text-xl font-bold text-[var(--color-text)] mb-2">UW-Madison</h4>
+            <p className="text-sm text-[var(--color-text-muted)] mb-4">BS Computer Science</p>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-[var(--color-accent)]"></div>
+                <span className="text-[var(--color-text-muted)]">GPA: 3.9/4.0</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-[var(--color-secondary)]"></div>
+                <span className="text-[var(--color-text-muted)]">Grad: May 2026</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Tabbed Info Section */}
-      <div className="mt-16">
+      {/* Skills Section with Tabs */}
+      <div className="glass-strong rounded-2xl p-8 border border-[var(--color-border)]">
         {/* Tab Buttons */}
-        <div className="flex gap-0 border-b-2 border-[var(--color-border)] mb-12">
+        <div className="flex gap-4 mb-8 border-b border-[var(--color-border)] pb-4 overflow-x-auto">
           {(['skills', 'education', 'certificates'] as TabType[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-10 py-4 font-work-sans text-[1.1rem] font-medium capitalize cursor-pointer relative transition-all duration-300 ${
-                activeTab === tab ? 'text-[var(--color-text)]' : 'text-[var(--color-muted)]'
-              } hover:text-[var(--color-text)]`}
+              className={`px-6 py-2 font-mono text-sm capitalize cursor-pointer relative transition-all duration-300 rounded-lg whitespace-nowrap ${
+                activeTab === tab
+                  ? 'bg-[var(--color-accent)] text-[var(--color-bg)] font-semibold'
+                  : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-elevated)]'
+              }`}
             >
-              {tab}
-              <span
-                className={`absolute bottom-[-2px] left-0 w-full h-[2px] bg-[var(--color-accent)] transition-transform duration-300 ${
-                  activeTab === tab ? 'scale-x-100' : 'scale-x-0'
-                }`}
-              />
+              <span className="text-[var(--color-text-muted)]">//</span> {tab}
             </button>
           ))}
         </div>
 
         {/* Tab Content */}
-        <div className="min-h-[400px]">
+        <div className="min-h-[300px]">
           {/* Skills Tab */}
           {activeTab === 'skills' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 animate-fade-in-up">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in-up">
               {Object.entries(skills).map(([category, items]) => (
-                <div key={category}>
-                  <h4 className="font-cormorant text-2xl mb-4 text-[var(--color-text)]">
+                <div key={category} className="space-y-3">
+                  <h4 className="text-lg font-bold text-[var(--color-accent)] font-mono">
                     {category}
                   </h4>
-                  <ul className="list-none">
+                  <ul className="space-y-2">
                     {items.map((skill, index) => (
                       <li
                         key={index}
-                        className="py-2.5 text-[var(--color-muted)] text-base border-b border-[var(--color-border)] last:border-b-0"
+                        className="flex items-center gap-2 text-[var(--color-text-muted)] text-sm group"
                       >
-                        {skill}
+                        <span className="text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity">▸</span>
+                        <span className="group-hover:text-[var(--color-text)] transition-colors">{skill}</span>
                       </li>
                     ))}
                   </ul>
@@ -144,67 +170,77 @@ export default function About() {
 
           {/* Education Tab */}
           {activeTab === 'education' && (
-            <div className="animate-fade-in-up">
-              <div className="py-8 border-b border-[var(--color-border)]">
-                <h4 className="font-cormorant text-[1.8rem] mb-2 text-[var(--color-text)]">
-                  University of Wisconsin-Madison
-                </h4>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed mb-2">
-                  <strong>Bachelor of Science in Computer Science</strong>
-                </p>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed mb-2">
-                  GPA: 3.9/4.0
-                </p>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed mb-2">
-                  Relevant Coursework: Machine Learning, Computer Vision, Artificial Intelligence,
-                  Data Structures & Algorithms, Software Engineering, Operating Systems, Database
-                  Systems
-                </p>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed">
-                  Expected Graduation: May 2026
-                </p>
+            <div className="animate-fade-in-up space-y-6">
+              <div className="p-6 bg-[var(--color-bg-elevated)] rounded-xl border border-[var(--color-border)]">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold text-[var(--color-text)] mb-1">
+                      University of Wisconsin-Madison
+                    </h4>
+                    <p className="text-[var(--color-accent)] font-mono text-sm">
+                      Bachelor of Science in Computer Science
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-[var(--color-accent)]">3.9</div>
+                    <div className="text-xs text-[var(--color-text-muted)]">GPA</div>
+                  </div>
+                </div>
+                
+                <div className="space-y-2 text-sm text-[var(--color-text-muted)]">
+                  <p><strong className="text-[var(--color-text)]">Expected Graduation:</strong> May 2026</p>
+                  <p>
+                    <strong className="text-[var(--color-text)]">Relevant Coursework:</strong> 
+                    Machine Learning, Computer Vision, Artificial Intelligence, Data Structures & Algorithms, 
+                    Software Engineering, Operating Systems, Database Systems
+                  </p>
+                </div>
               </div>
             </div>
           )}
 
           {/* Certificates Tab */}
           {activeTab === 'certificates' && (
-            <div className="animate-fade-in-up">
-              <div className="py-8 border-b border-[var(--color-border)]">
-                <h4 className="font-cormorant text-[1.8rem] mb-2 text-[var(--color-text)]">
-                  Machine Learning Specialization
-                </h4>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed mb-2">
-                  Stanford University & DeepLearning.AI (Coursera)
-                </p>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed">
-                  Completed comprehensive study of supervised learning, unsupervised learning, and
-                  best practices in machine learning.
-                </p>
-              </div>
-              <div className="py-8 border-b border-[var(--color-border)]">
-                <h4 className="font-cormorant text-[1.8rem] mb-2 text-[var(--color-text)]">
-                  Deep Learning Specialization
-                </h4>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed mb-2">
-                  DeepLearning.AI (Coursera)
-                </p>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed">
-                  Mastered neural networks, CNNs, RNNs, and deployment strategies for deep learning
-                  models.
-                </p>
-              </div>
-              <div className="py-8">
-                <h4 className="font-cormorant text-[1.8rem] mb-2 text-[var(--color-text)]">
-                  AWS Certified Cloud Practitioner
-                </h4>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed mb-2">
-                  Amazon Web Services
-                </p>
-                <p className="text-[var(--color-muted)] text-base leading-relaxed">
-                  Demonstrated foundational knowledge of AWS cloud services and architecture.
-                </p>
-              </div>
+            <div className="animate-fade-in-up space-y-4">
+              {[
+                {
+                  title: 'Machine Learning Specialization',
+                  issuer: 'Stanford University & DeepLearning.AI',
+                  desc: 'Comprehensive study of supervised/unsupervised learning and ML best practices.',
+                },
+                {
+                  title: 'Deep Learning Specialization',
+                  issuer: 'DeepLearning.AI',
+                  desc: 'Mastered neural networks, CNNs, RNNs, and deployment strategies.',
+                },
+                {
+                  title: 'AWS Certified Cloud Practitioner',
+                  issuer: 'Amazon Web Services',
+                  desc: 'Foundational knowledge of AWS cloud services and architecture.',
+                },
+              ].map((cert, index) => (
+                <div
+                  key={index}
+                  className="p-6 bg-[var(--color-bg-elevated)] rounded-xl border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-all duration-300 group"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-[var(--color-accent)] bg-opacity-10 flex items-center justify-center text-[var(--color-accent)] font-bold text-xl flex-shrink-0">
+                      ✓
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-[var(--color-text)] mb-1 group-hover:text-[var(--color-accent)] transition-colors">
+                        {cert.title}
+                      </h4>
+                      <p className="text-sm text-[var(--color-accent)] font-mono mb-2">
+                        {cert.issuer}
+                      </p>
+                      <p className="text-sm text-[var(--color-text-muted)]">
+                        {cert.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
