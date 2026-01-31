@@ -79,7 +79,8 @@ export default function Hero() {
           {/* CTA buttons */}
           <div className="flex flex-wrap gap-4 items-center pt-4">
             <a
-              href="#"
+              href="/LakshyaGupta.pdf"
+              download
               className="group px-6 py-3 bg-[var(--color-accent)] text-[var(--color-bg)] font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_var(--color-accent-glow)] hover:scale-105 flex items-center gap-2"
             >
               <span>View Resume</span>
