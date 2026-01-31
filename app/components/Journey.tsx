@@ -156,9 +156,15 @@ const domainData: Record<Exclude<DomainType, null>, { name: string; milestones: 
 };
 
 export default function Journey() {
-  const [activeDomain, setActiveDomain] = useState<DomainType>(null);
+  const [activeDomain, setActiveDomain] = useState<DomainType>('cv'); // Start with first tab open
 
   const handleDomainClick = (domain: Exclude<DomainType, null>) => {
+    // Toggle: if clicking active tab, collapse it
+    if (activeDomain === domain) {
+      setActiveDomain(null);
+      return;
+    }
+    
     setActiveDomain(domain);
     setTimeout(() => {
       const ribbonElement = document.getElementById(`ribbon-${domain}`);
@@ -213,7 +219,7 @@ export default function Journey() {
       </div>
 
       {/* Ribbons */}
-      {activeDomain ? (
+      <div className="mt-12">
         <div className="mt-12">
           {(Object.keys(domainData) as Exclude<DomainType, null>[]).map((domain) => (
             <div
@@ -286,17 +292,7 @@ export default function Journey() {
             </div>
           ))}
         </div>
-      ) : (
-        // Initial state - show prompt
-        <div className="text-center py-20">
-          <div className="inline-block glass-strong rounded-2xl p-12 border border-[var(--color-border)]">
-            <div className="text-6xl mb-4">🚀</div>
-            <p className="text-[var(--color-text-muted)] font-mono text-lg">
-              Select a domain above to explore my journey
-            </p>
-          </div>
-        </div>
-      )}
+      </div>
     </section>
   );
 }

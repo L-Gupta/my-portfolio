@@ -8,6 +8,7 @@ import Journey from './components/Journey';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import Experience from './components/experience';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -24,6 +25,7 @@ export default function Home() {
       <Hero />
       <Highlight />
       <About />
+      <Experience />
       <Journey />
       <Contact />
       <Footer />

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-type TabType = 'skills' | 'education' | 'certificates';
+type TabType = 'skills' | 'certificates';
 
 export default function About() {
   const [activeTab, setActiveTab] = useState<TabType>('skills');
@@ -27,21 +27,23 @@ export default function About() {
   }, []);
 
   const skills = {
-    Languages: ['Python', 'Java', 'C/C++', 'JavaScript/TypeScript', 'SQL'],
-    'ML & AI': [
-      'TensorFlow / PyTorch',
+    Languages: ['Python', 'Java', 'JavaScript', 'SQL/MySQL', 'R'],
+    'Data Science & ML': [
+      'pandas',
+      'NumPy',
+      'Matplotlib',
       'Scikit-learn',
-      'OpenCV',
-      'YOLO',
-      'Neural Networks',
+      'Keras/PyTorch',
+      'Deep Learning',
     ],
-    'Frameworks': ['React / Next.js', 'Node.js', 'Git', 'Docker', 'ROS'],
-    'Concepts': [
-      'Data Structures',
-      'Computer Vision',
-      'Robotics',
-      'System Design',
-      'Software Engineering',
+    'Backend & Systems': ['FastAPI', 'REST APIs', 'Microservices', 'WebSockets', 'Async/Await', 'Celery'],
+    'Frontend & Tools': [
+      'React.js',
+      'HTML/CSS',
+      'Git/GitHub',
+      'Docker',
+      'PostgreSQL',
+      'Redis',
     ],
   };
 
@@ -74,26 +76,28 @@ export default function About() {
         <div className="lg:col-span-2 bento-card rounded-2xl p-8 space-y-6 accent-bar">
           <div>
             <div className="text-sm font-mono text-[var(--color-text-muted)] mb-2">// whoami</div>
-            <h3 className="text-2xl font-bold text-[var(--color-text)] mb-4">Computer Science @ UW-Madison</h3>
+            <h3 className="text-2xl font-bold text-[var(--color-text)] mb-4">Triple Major @ UW-Madison</h3>
           </div>
           
           <div className="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
             <p>
-              I'm a computer science student driven by curiosity about how machines can perceive, learn, 
-              and interact with the world. My journey spans machine learning, computer vision, and robotics.
+              I'm pursuing a triple major in Computer Science, Data Science, and Mathematics at UW-Madison. 
+              My passion lies in building scalable systems and leveraging machine learning to solve real-world problems.
             </p>
             <p>
-              What excites me most is building systems that bridge theoretical concepts with real-world 
-              applications—whether it's developing computer vision pipelines or experimenting with autonomous navigation.
+              From co-founding TAM and building microservices architectures to conducting research at IIT Delhi 
+              on computer vision and medical prediction models, I love working at the intersection of backend 
+              engineering, data science, and AI.
             </p>
             <p>
-              I believe in learning through building, iterating through failure, and maintaining a systematic 
-              approach to complex problems.
+              Whether it's optimizing distributed task queues, implementing quantum cryptography protocols, or 
+              building full-stack applications, I approach each project with a focus on robust engineering and 
+              measurable impact.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-2 pt-4">
-            {['Problem Solver', 'Fast Learner', 'Team Player', 'Open Source'].map((tag) => (
+            {['Full-Stack Dev', 'ML Engineer', 'System Architect', 'Founder'].map((tag) => (
               <span
                 key={tag}
                 className="px-3 py-1.5 bg-[var(--color-bg-elevated)] border border-[var(--color-border)] rounded-full text-xs text-[var(--color-text-muted)] font-mono"
@@ -108,17 +112,26 @@ export default function About() {
         <div className="bento-card rounded-2xl p-8 flex flex-col justify-between">
           <div>
             <div className="text-sm font-mono text-[var(--color-text-muted)] mb-4">// education</div>
-            <h4 className="text-xl font-bold text-[var(--color-text)] mb-2">UW-Madison</h4>
-            <p className="text-sm text-[var(--color-text-muted)] mb-4">BS Computer Science</p>
-            <div className="space-y-2 text-sm">
+            <h4 className="text-xl font-bold text-[var(--color-text)] mb-2">University of Wisconsin-Madison</h4>
+            <p className="text-sm text-[var(--color-accent)] font-mono mb-4">B.S. Computer Science, Data Science, Mathematics</p>
+            
+            <div className="space-y-3 mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-[var(--color-accent)]"></div>
-                <span className="text-[var(--color-text-muted)]">GPA: 3.9/4.0</span>
+                <span className="text-sm text-[var(--color-text-muted)]">CGPA: 3.51</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-[var(--color-secondary)]"></div>
-                <span className="text-[var(--color-text-muted)]">Grad: May 2026</span>
+                <span className="text-sm text-[var(--color-text-muted)]">Expected: May 2028</span>
               </div>
+            </div>
+
+            <div className="pt-4 border-t border-[var(--color-border)]">
+              <p className="text-xs font-mono text-[var(--color-text-muted)] mb-2">Relevant Coursework:</p>
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                Statistical Modeling, Data Science Programming, Probability Theory, Linear Algebra, 
+                Data Structures & Algorithms, OOP, Backend Systems, Database Systems, Operating Systems
+              </p>
             </div>
           </div>
         </div>
@@ -127,8 +140,8 @@ export default function About() {
       {/* Skills Section with Tabs */}
       <div className="glass-strong rounded-2xl p-8 border border-[var(--color-border)]">
         {/* Tab Buttons */}
-        <div className="flex gap-4 mb-8 border-b border-[var(--color-border)] pb-4 overflow-x-auto">
-          {(['skills', 'education', 'certificates'] as TabType[]).map((tab) => (
+        <div className="flex gap-4 mb-8 border-b border-[var(--color-border)] pb-4 overflow-x-auto justify-center">
+          {(['skills', 'certificates'] as TabType[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -147,7 +160,7 @@ export default function About() {
         <div className="min-h-[300px]">
           {/* Skills Tab */}
           {activeTab === 'skills' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in-up">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in-up">
               {Object.entries(skills).map(([category, items]) => (
                 <div key={category} className="space-y-3">
                   <h4 className="text-lg font-bold text-[var(--color-accent)] font-mono">
@@ -169,55 +182,24 @@ export default function About() {
             </div>
           )}
 
-          {/* Education Tab */}
-          {activeTab === 'education' && (
-            <div className="animate-fade-in-up space-y-6">
-              <div className="p-6 bg-[var(--color-bg-elevated)] rounded-xl border border-[var(--color-border)]">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h4 className="text-xl font-bold text-[var(--color-text)] mb-1">
-                      University of Wisconsin-Madison
-                    </h4>
-                    <p className="text-[var(--color-accent)] font-mono text-sm">
-                      Bachelor of Science in Computer Science
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-[var(--color-accent)]">3.9</div>
-                    <div className="text-xs text-[var(--color-text-muted)]">GPA</div>
-                  </div>
-                </div>
-                
-                <div className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                  <p><strong className="text-[var(--color-text)]">Expected Graduation:</strong> May 2026</p>
-                  <p>
-                    <strong className="text-[var(--color-text)]">Relevant Coursework:</strong> 
-                    Machine Learning, Computer Vision, Artificial Intelligence, Data Structures & Algorithms, 
-                    Software Engineering, Operating Systems, Database Systems
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Certificates Tab */}
           {activeTab === 'certificates' && (
-            <div className="animate-fade-in-up space-y-4">
+            <div className="animate-fade-in-up grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
-                  title: 'Machine Learning Specialization',
-                  issuer: 'Stanford University & DeepLearning.AI',
-                  desc: 'Comprehensive study of supervised/unsupervised learning and ML best practices.',
+                  title: 'Meta Data Analyst Professional Certificate',
+                  issuer: 'Meta',
+                  desc: 'Comprehensive data analysis training covering statistical methods, visualization, and analytics.',
                 },
                 {
-                  title: 'Deep Learning Specialization',
-                  issuer: 'DeepLearning.AI',
-                  desc: 'Mastered neural networks, CNNs, RNNs, and deployment strategies.',
+                  title: 'IBM Generative AI Engineering Professional Certificate',
+                  issuer: 'IBM',
+                  desc: 'Advanced training in generative AI systems, LLM engineering, and AI application development.',
                 },
                 {
-                  title: 'AWS Certified Cloud Practitioner',
-                  issuer: 'Amazon Web Services',
-                  desc: 'Foundational knowledge of AWS cloud services and architecture.',
+                  title: 'Getting Started with Microsoft Excel',
+                  issuer: 'Microsoft',
+                  desc: 'Professional certification in advanced Excel techniques and data manipulation.',
                 },
               ].map((cert, index) => (
                 <div

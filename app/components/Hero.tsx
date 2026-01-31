@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function Hero() {
   const [text, setText] = useState('');
@@ -57,7 +57,7 @@ export default function Hero() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               <span className="text-[var(--color-text)]">Building</span>{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-secondary)] to-[var(--color-purple)] animate-gradient">
-                intelligent
+                scalable
               </span>
               <br />
               <span className="text-[var(--color-text)]">systems</span>
@@ -65,23 +65,21 @@ export default function Hero() {
             
             <div className="flex items-center gap-3 text-[var(--color-text-muted)] font-mono text-sm">
               <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse"></div>
-              <span>CS @ UW-Madison</span>
+              <span>CS • DS • Math @ UW-Madison</span>
               <span className="text-[var(--color-border-bright)]">|</span>
-              <span>ML • Vision • Robotics</span>
+              <span>CTO @ TAM</span>
             </div>
           </div>
 
           <p className="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-[600px]">
-            Turning complex problems into elegant solutions through machine learning, computer vision, 
-            and autonomous systems. Currently exploring the frontiers of AI and robotics.
+            Triple major student and founder building microservices architectures, AI systems, and 
+            data-driven solutions. From backend engineering to machine learning research.
           </p>
 
           {/* CTA buttons */}
           <div className="flex flex-wrap gap-4 items-center pt-4">
             <a
-              href="/LakshyaGupta.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
               className="group px-6 py-3 bg-[var(--color-accent)] text-[var(--color-bg)] font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_var(--color-accent-glow)] hover:scale-105 flex items-center gap-2"
             >
               <span>View Resume</span>
@@ -103,8 +101,8 @@ export default function Hero() {
           <div className="flex gap-4 pt-6">
             {[
               { icon: 'GH', label: 'GitHub', href: 'https://github.com/L-Gupta' },
-              { icon: 'LI', label: 'LinkedIn', href: 'https://www.linkedin.com/in/lakshya-gupta-003683329/' },
-              { icon: '@', label: 'Email', href: 'mailto:lgupta3012@gmail.com' },
+              { icon: 'LI', label: 'LinkedIn', href: 'https://linkedin.com' },
+              { icon: '@', label: 'Email', href: 'mailto:lgupta22@wisc.edu' },
             ].map((social) => (
               <a
                 key={social.label}
@@ -128,7 +126,7 @@ export default function Hero() {
             <div className="bento-card col-span-2 row-span-2 rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
               <div>
                 <div className="text-sm text-[var(--color-text-muted)] mb-2 font-mono">// Currently building</div>
-                <h3 className="text-xl font-bold text-[var(--color-text)]">AI-Powered Vision Systems</h3>
+                <h3 className="text-xl font-bold text-[var(--color-text)]">Financial Document Automation @ TAM</h3>
               </div>
               <div className="flex items-end gap-2">
                 <div className="h-16 w-2 bg-[var(--color-accent)] rounded-full opacity-70"></div>
@@ -140,15 +138,15 @@ export default function Hero() {
 
             {/* Stats card */}
             <div className="bento-card rounded-2xl p-6 flex flex-col justify-between">
-              <div className="text-4xl font-bold text-[var(--color-accent)]">15+</div>
-              <div className="text-sm text-[var(--color-text-muted)]">Projects Completed</div>
+              <div className="text-4xl font-bold text-[var(--color-accent)]">3</div>
+              <div className="text-sm text-[var(--color-text-muted)]">Majors at UW-Madison</div>
             </div>
 
             {/* Tech stack preview */}
             <div className="bento-card rounded-2xl p-6 flex flex-col justify-between">
               <div className="text-xs text-[var(--color-text-muted)] mb-2 font-mono">$ tech --list</div>
               <div className="flex flex-wrap gap-1">
-                {['Python', 'C++', 'React'].map((tech) => (
+                {['Python', 'FastAPI', 'React'].map((tech) => (
                   <span key={tech} className="text-[10px] px-2 py-1 bg-[var(--color-border)] rounded text-[var(--color-text-muted)]">
                     {tech}
                   </span>

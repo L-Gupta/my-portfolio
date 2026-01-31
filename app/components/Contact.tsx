@@ -39,9 +39,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10">
+    <section id="contact" style={{paddingTop: '2pt', paddingBottom: '2pt'}} className="px-6 md:px-12 max-w-[1400px] mx-auto relative z-10">
       {/* Header */}
-      <div className="mb-16 text-center">
+      <div className="mb-2 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
           <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
           <span className="text-[var(--color-accent)] font-mono text-sm">03.</span>
@@ -56,7 +56,7 @@ export default function Contact() {
       </div>
 
       {/* Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-2">
         {/* Contact Info Cards */}
         <div className="lg:col-span-1 space-y-6">
           {/* Email Card */}
@@ -214,35 +214,6 @@ export default function Contact() {
               // Form is a placeholder. Backend integration needed.
             </p>
           </form>
-        </div>
-      </div>
-
-      {/* Quick Links Section */}
-      <div className="glass-strong rounded-2xl p-8 border border-[var(--color-border)] text-center">
-        <p className="text-[var(--color-text-muted)] mb-4 font-mono">
-          // Or connect with me on social media
-        </p>
-        <div className="flex justify-center gap-4">
-          {[
-            { icon: 'GH', label: 'GitHub', href: 'https://github.com', color: 'accent' },
-            { icon: 'LI', label: 'LinkedIn', href: 'https://linkedin.com', color: 'secondary' },
-            { icon: '@', label: 'Email', href: 'mailto:your.email@example.com', color: 'purple' },
-          ].map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-14 h-14 glass rounded-lg flex items-center justify-center text-[var(--color-text-muted)] font-bold text-lg transition-all duration-300 hover:scale-110 ${
-                social.color === 'accent' ? 'hover:text-[var(--color-accent)] hover:border-[var(--color-accent)] hover:shadow-[0_0_20px_var(--color-accent-glow)]' :
-                social.color === 'secondary' ? 'hover:text-[var(--color-secondary)] hover:border-[var(--color-secondary)]' :
-                'hover:text-[var(--color-purple)] hover:border-[var(--color-purple)]'
-              }`}
-              title={social.label}
-            >
-              {social.icon}
-            </a>
-          ))}
         </div>
       </div>
     </section>
