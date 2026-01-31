@@ -79,7 +79,9 @@ export default function Hero() {
           {/* CTA buttons */}
           <div className="flex flex-wrap gap-4 items-center pt-4">
             <a
-              href="#"
+              href="/LakshyaGupta.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group px-6 py-3 bg-[var(--color-accent)] text-[var(--color-bg)] font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_var(--color-accent-glow)] hover:scale-105 flex items-center gap-2"
             >
               <span>View Resume</span>
@@ -100,9 +102,9 @@ export default function Hero() {
           {/* Social links - inline */}
           <div className="flex gap-4 pt-6">
             {[
-              { icon: 'GH', label: 'GitHub', href: 'https://github.com' },
-              { icon: 'LI', label: 'LinkedIn', href: 'https://linkedin.com' },
-              { icon: '@', label: 'Email', href: 'mailto:your.email@example.com' },
+              { icon: 'GH', label: 'GitHub', href: 'https://github.com/L-Gupta' },
+              { icon: 'LI', label: 'LinkedIn', href: 'https://www.linkedin.com/in/lakshya-gupta-003683329/' },
+              { icon: '@', label: 'Email', href: 'mailto:lgupta3012@gmail.com' },
             ].map((social) => (
               <a
                 key={social.label}

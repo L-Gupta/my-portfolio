@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type DomainType = 'cv' | 'ml' | 'robotics' | 'web' | null;
 
@@ -163,95 +163,140 @@ export default function Journey() {
     setTimeout(() => {
       const ribbonElement = document.getElementById(`ribbon-${domain}`);
       if (ribbonElement) {
-        ribbonElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const offset = 200; // Offset for sticky header + sticky tabs
+        const elementPosition = ribbonElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
     }, 100);
   };
 
   return (
-    <section id="journey" className="py-32 px-12 max-w-[1400px] mx-auto">
+    <section id="journey" className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10">
       {/* Header */}
       <div className="mb-16 text-center">
-        <h2 className="font-cormorant text-[3.5rem] font-semibold mb-4 text-[var(--color-text)]">
-          My Journey
-        </h2>
-        <p className="text-center text-[var(--color-muted)] text-[1.1rem] max-w-[700px] mx-auto mt-4">
-          Explore my learning progression across different technical domains
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
+          <span className="text-[var(--color-accent)] font-mono text-sm">02.</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text)]">
+            My <span className="text-[var(--color-accent)]">Journey</span>
+          </h2>
+          <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
+        </div>
+        <p className="text-[var(--color-text-muted)] text-lg font-mono">
+          // Explore my learning progression across technical domains
         </p>
       </div>
 
-      {/* Domain Islands */}
-      <div className="flex justify-center gap-8 mb-16 flex-wrap">
-        {(Object.keys(domainData) as Exclude<DomainType, null>[]).map((domain) => (
-          <button
-            key={domain}
-            onClick={() => handleDomainClick(domain)}
-            className={`px-10 py-5 bg-white border-2 rounded-sm cursor-pointer transition-all duration-300 font-medium text-base ${
-              activeDomain === domain
-                ? 'bg-[var(--color-accent)] border-[var(--color-accent)] text-white'
-                : 'border-[var(--color-border)] text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-text)] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.1)]'
-            }`}
-          >
-            {domainData[domain].name}
-          </button>
-        ))}
+      {/* Domain Tabs */}
+      <div className="relative mb-12">
+        <div className="flex gap-4 overflow-x-auto pb-2 justify-center">
+          {(Object.keys(domainData) as Exclude<DomainType, null>[]).map((domain) => (
+            <button
+              key={domain}
+              onClick={() => handleDomainClick(domain)}
+              className={`px-6 py-3 rounded-lg font-mono text-sm font-medium whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                activeDomain === domain
+                  ? 'bg-[var(--color-accent)] text-[var(--color-bg)] shadow-[0_0_20px_var(--color-accent-glow)]'
+                  : 'glass border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)]'
+              }`}
+            >
+              {activeDomain === domain && <span className="mr-2">▸</span>}
+              {domainData[domain].name}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Ribbons */}
-      {activeDomain &&
-        (Object.keys(domainData) as Exclude<DomainType, null>[]).map((domain) => (
-          <div
-            key={domain}
-            id={`ribbon-${domain}`}
-            className={`relative max-w-[900px] mx-auto transition-all duration-600 ${
-              activeDomain === domain ? 'block opacity-100 animate-fade-in' : 'hidden opacity-0'
-            }`}
-          >
-            {/* Ribbon Path */}
-            <div className="absolute left-1/2 top-0 w-1 h-full bg-gradient-to-b from-[var(--color-accent)] to-[var(--color-secondary)] -translate-x-1/2 rounded-sm" />
+      {activeDomain ? (
+        <div className="mt-12">
+          {(Object.keys(domainData) as Exclude<DomainType, null>[]).map((domain) => (
+            <div
+              key={domain}
+              id={`ribbon-${domain}`}
+              className={`relative max-w-[1000px] mx-auto transition-all duration-600 ${
+                activeDomain === domain ? 'block opacity-100 animate-fade-in' : 'hidden opacity-0'
+              }`}
+            >
+              {/* Ribbon Path */}
+              <div className="absolute left-1/2 top-0 w-1 h-full bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-secondary)] to-[var(--color-purple)] -translate-x-1/2 rounded-full opacity-30" />
 
-            {/* Milestones */}
-            {domainData[domain].milestones.map((milestone, index) => (
-              <div key={index} className="relative py-12 mb-8">
-                {/* Milestone Marker */}
-                <div className="absolute left-1/2 top-12 w-5 h-5 bg-[var(--color-accent)] border-4 border-[var(--color-bg)] rounded-full -translate-x-1/2 z-10" />
+              {/* Milestones */}
+              {domainData[domain].milestones.map((milestone, index) => (
+                <div key={index} className="relative py-12 mb-8">
+                  {/* Milestone Marker */}
+                  <div className="absolute left-1/2 top-12 w-5 h-5 bg-[var(--color-accent)] border-4 border-[var(--color-bg)] rounded-full -translate-x-1/2 z-10 shadow-[0_0_20px_var(--color-accent-glow)]" />
 
-                {/* Milestone Content */}
-                <div
-                  className={`relative ${
-                    index % 2 === 0
-                      ? 'pl-[calc(50%+3rem)] pr-0'
-                      : 'pr-[calc(50%+3rem)] pl-0 text-right'
-                  }`}
-                >
-                  <div className="text-[var(--color-accent)] font-cormorant text-[1.3rem] font-semibold mb-2">
-                    {milestone.label}
-                  </div>
+                  {/* Milestone Content */}
+                  <div
+                    className={`relative ${
+                      index % 2 === 0
+                        ? 'pl-[calc(50%+3rem)] pr-0'
+                        : 'pr-[calc(50%+3rem)] pl-0 text-right'
+                    }`}
+                  >
+                    <div className="text-[var(--color-accent)] font-mono text-sm font-bold mb-3 flex items-center gap-2">
+                      {index % 2 === 0 ? (
+                        <>
+                          <span className="text-[var(--color-text-muted)]">//</span>
+                          {milestone.label}
+                        </>
+                      ) : (
+                        <>
+                          {milestone.label}
+                          <span className="text-[var(--color-text-muted)]">//</span>
+                        </>
+                      )}
+                    </div>
 
-                  {/* Project Card */}
-                  <div className="bg-white p-8 rounded-sm border border-[var(--color-border)] mt-4 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1">
-                    <h4 className="font-cormorant text-2xl mb-3 text-[var(--color-text)]">
-                      {milestone.project.title}
-                    </h4>
-                    <p className="text-[var(--color-muted)] leading-[1.7] mb-4">
-                      {milestone.project.description}
-                    </p>
-                    <div className="flex gap-2 flex-wrap">
-                      {milestone.project.techStack.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1.5 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-sm text-[0.85rem] text-[var(--color-muted)]"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                    {/* Project Card */}
+                    <div className="bento-card p-6 rounded-xl group">
+                      <h4 className="text-xl font-bold text-[var(--color-text)] mb-3 group-hover:text-[var(--color-accent)] transition-colors">
+                        {milestone.project.title}
+                      </h4>
+                      <p className="text-[var(--color-text-muted)] leading-relaxed mb-4 text-sm">
+                        {milestone.project.description}
+                      </p>
+                      <div className="flex gap-2 flex-wrap">
+                        {milestone.project.techStack.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-3 py-1 bg-[var(--color-bg-elevated)] border border-[var(--color-border)] rounded-md text-xs text-[var(--color-text-muted)] font-mono hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
+              ))}
+
+              {/* End marker */}
+              <div className="relative flex justify-center py-8">
+                <div className="w-12 h-12 rounded-full glass border-2 border-[var(--color-accent)] flex items-center justify-center text-[var(--color-accent)] font-bold shadow-[0_0_30px_var(--color-accent-glow)]">
+                  ✓
+                </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        // Initial state - show prompt
+        <div className="text-center py-20">
+          <div className="inline-block glass-strong rounded-2xl p-12 border border-[var(--color-border)]">
+            <div className="text-6xl mb-4">🚀</div>
+            <p className="text-[var(--color-text-muted)] font-mono text-lg">
+              Select a domain above to explore my journey
+            </p>
           </div>
-        ))}
+        </div>
+      )}
     </section>
   );
 }

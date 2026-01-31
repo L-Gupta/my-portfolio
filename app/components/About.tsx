@@ -57,13 +57,14 @@ export default function About() {
       }}
     >
       {/* Header */}
-      <div className="mb-16">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="mb-16 text-center">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
           <span className="text-[var(--color-accent)] font-mono text-sm">01.</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text)]">
             About <span className="text-[var(--color-accent)]">Me</span>
           </h2>
-          <div className="h-[1px] flex-1 bg-[var(--color-border)] ml-4"></div>
+          <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
         </div>
       </div>
 
