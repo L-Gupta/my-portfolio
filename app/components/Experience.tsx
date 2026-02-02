@@ -30,7 +30,7 @@ const experienceData: Experience[] = [
     company: 'Webuters Technology',
     role: 'AI Intern',
     duration: 'Apr 2025 - Aug 2025',
-    location: 'Remote',
+    location: 'Delhi, India',
     description: 'Built full-stack AI-powered mock interview platform with real-time analysis and automated reporting.',
     achievements: [
       'Built full-stack platform with React frontend and FastAPI backend, implementing WebRTC for real-time audio/video capture',
@@ -79,7 +79,7 @@ export default function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10"
+      className="py-4 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -90,15 +90,11 @@ export default function Experience() {
       <div className="mb-16 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
           <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
-          <span className="text-[var(--color-accent)] font-mono text-sm">02.</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text)]">
             Work <span className="text-[var(--color-accent)]">Experience</span>
           </h2>
           <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
         </div>
-        <p className="text-[var(--color-text-muted)] text-lg font-mono">
-          // Where I've applied my skills professionally
-        </p>
       </div>
 
       {/* Experience Cards */}
@@ -179,16 +175,6 @@ export default function Experience() {
         ))}
       </div>
 
-      {/* Call to Action */}
-      <div className="mt-12 text-center">
-        <a
-          href="#"
-          className="inline-flex items-center gap-2 px-6 py-3 glass rounded-lg font-mono text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)] transition-all"
-        >
-          <span>View Full Resume</span>
-          <span className="text-[var(--color-accent)]">→</span>
-        </a>
-      </div>
     </section>
   );
 }

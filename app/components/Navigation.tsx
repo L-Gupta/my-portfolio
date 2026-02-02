@@ -36,7 +36,7 @@ export default function Navigation() {
           className="text-xl font-bold text-[var(--color-text)] tracking-tight hover:text-[var(--color-accent)] transition-colors font-mono flex items-center gap-2"
         >
           <span className="text-[var(--color-accent)]">&lt;</span>
-          LG
+          Lakshya Gupta
           <span className="text-[var(--color-accent)]">/&gt;</span>
         </Link>
 
@@ -46,7 +46,7 @@ export default function Navigation() {
               <Link
                 href={`#${item.toLowerCase()}`}
                 onClick={(e) => scrollToSection(e, item.toLowerCase())}
-                className="text-[var(--color-text-muted)] text-sm font-medium relative group transition-colors hover:text-[var(--color-accent)] font-mono"
+                className="text-[var(--color-text-muted)] text-sm font-bold relative group transition-colors hover:text-[var(--color-accent)] font-mono"
               >
                 <span className="text-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-opacity">//</span> {item}
                 <span className="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-[var(--color-accent)] transition-all duration-300 group-hover:w-full" />

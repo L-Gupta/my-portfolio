@@ -25,7 +25,9 @@ export default function Home() {
       <Hero />
       <Highlight />
       <About />
+      <div style={{ marginBottom: '16pt' }} />
       <Experience />
+      <div style={{ marginBottom: '16pt' }} />
       <Journey />
       <Contact />
       <Footer />

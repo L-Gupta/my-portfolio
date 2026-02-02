@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -39,12 +41,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" style={{paddingTop: '2pt', paddingBottom: '2pt'}} className="px-6 md:px-12 max-w-[1400px] mx-auto relative z-10">
+    <section id="contact" className="py-4 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10">
       {/* Header */}
-      <div className="mb-2 text-center">
+      <div className="mb-16 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
           <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
-          <span className="text-[var(--color-accent)] font-mono text-sm">03.</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text)]">
             Get in <span className="text-[var(--color-accent)]">Touch</span>
           </h2>
@@ -56,15 +57,16 @@ export default function Contact() {
       </div>
 
       {/* Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
         {/* Contact Info Cards */}
         <div className="lg:col-span-1 space-y-6">
           {/* Email Card */}
           <div className="bento-card rounded-2xl p-6 group hover:border-[var(--color-accent)] transition-all">
             <div className="flex items-center gap-4 mb-3">
-              <div className="w-12 h-12 rounded-lg bg-[var(--color-accent)] bg-opacity-10 flex items-center justify-center text-[var(--color-accent)] text-xl">
-                @
+              <div className="w-12 h-12 rounded-lg bg-purple-500 bg-opacity-10 flex items-center justify-center text-purple-500">
+                <HiOutlineMail className="w-6 h-6" />
               </div>
+
               <div>
                 <div className="text-xs font-mono text-[var(--color-text-muted)] mb-1">// email</div>
                 <h3 className="text-sm font-bold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
@@ -73,19 +75,20 @@ export default function Contact() {
               </div>
             </div>
             <a 
-              href="mailto:your.email@example.com"
+              href="mailto:lgupta22@wisc.edu"
               className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors font-mono"
             >
-              your.email@example.com
+              lgupta22@wisc.edu
             </a>
           </div>
 
           {/* GitHub Card */}
           <div className="bento-card rounded-2xl p-6 group hover:border-[var(--color-accent)] transition-all">
             <div className="flex items-center gap-4 mb-3">
-              <div className="w-12 h-12 rounded-lg bg-[var(--color-secondary)] bg-opacity-10 flex items-center justify-center text-[var(--color-secondary)] text-xl font-bold">
-                GH
+              <div className="w-12 h-12 rounded-lg bg-green-500 bg-opacity-10 flex items-center justify-center text-green-500">
+                <FaGithub className="w-6 h-6" />
               </div>
+
               <div>
                 <div className="text-xs font-mono text-[var(--color-text-muted)] mb-1">// github</div>
                 <h3 className="text-sm font-bold text-[var(--color-text)] group-hover:text-[var(--color-secondary)] transition-colors">
@@ -94,21 +97,22 @@ export default function Contact() {
               </div>
             </div>
             <a 
-              href="https://github.com"
+              href="https://github.com/L-Gupta"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-secondary)] transition-colors font-mono"
             >
-              github.com/yourusername
+              github.com/L-Gupta
             </a>
           </div>
 
           {/* LinkedIn Card */}
           <div className="bento-card rounded-2xl p-6 group hover:border-[var(--color-accent)] transition-all">
             <div className="flex items-center gap-4 mb-3">
-              <div className="w-12 h-12 rounded-lg bg-[var(--color-purple)] bg-opacity-10 flex items-center justify-center text-[var(--color-purple)] text-xl font-bold">
-                LI
+              <div className="w-12 h-12 rounded-lg bg-blue-500 bg-opacity-10 flex items-center justify-center text-blue-500">
+                <FaLinkedin className="w-6 h-6" />
               </div>
+
               <div>
                 <div className="text-xs font-mono text-[var(--color-text-muted)] mb-1">// linkedin</div>
                 <h3 className="text-sm font-bold text-[var(--color-text)] group-hover:text-[var(--color-purple)] transition-colors">
@@ -117,12 +121,36 @@ export default function Contact() {
               </div>
             </div>
             <a 
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/lakshya-gupta-003683329/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-purple)] transition-colors font-mono"
             >
               linkedin.com/in/yourprofile
+            </a>
+          </div>
+
+          {/* Discord Card */}
+          <div className="bento-card rounded-2xl p-6 group hover:border-[var(--color-accent)] transition-all">
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-12 h-12 rounded-lg bg-[#5865F2] bg-opacity-10 flex items-center justify-center text-[#5865F2]">
+                <FaDiscord className="w-6 h-6" />
+              </div>
+
+              <div>
+                <div className="text-xs font-mono text-[var(--color-text-muted)] mb-1">// discord</div>
+                <h3 className="text-sm font-bold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
+                  Discord
+                </h3>
+              </div>
+            </div>
+            <a 
+              href="https://discord.com/users/1283191882926522401"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors font-mono"
+            >
+              @lakshya081631
             </a>
           </div>
         </div>

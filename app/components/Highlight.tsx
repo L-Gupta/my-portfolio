@@ -2,7 +2,7 @@
 
 export default function Highlight() {
   return (
-    <section className="py-20 px-6 md:px-12 relative z-10">
+    <section className="py-4 px-6 md:px-12 relative z-10">
       <div className="max-w-[1200px] mx-auto">
         <div className="glass-strong rounded-2xl p-8 md:p-12 border-l-4 border-[var(--color-accent)] relative overflow-hidden">
           {/* Code-style decoration */}
@@ -15,8 +15,7 @@ export default function Highlight() {
               <span className="text-[var(--color-purple)]">const</span> philosophy <span className="text-[var(--color-text-muted)]">=</span> {'{'}
             </div>
             <p className="text-xl md:text-2xl lg:text-3xl text-[var(--color-text)] leading-relaxed font-medium pl-8 italic">
-              "Learning is not about memorizing solutions—it's about building frameworks to solve 
-              problems that don't exist yet."
+              "I learn principles, not just solutions.
             </p>
             <div className="text-sm font-mono text-[var(--color-accent)] mt-4">
               {'}'};

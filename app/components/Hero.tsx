@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
 
 export default function Hero() {
   const [text, setText] = useState('');
@@ -22,7 +24,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex items-center px-6 md:px-12 pt-32 pb-16 max-w-[1400px] mx-auto relative z-10">
+    <section id="home" className="min-h-screen flex items-center px-6 md:px-12 pt-32 pb-2 max-w-[1400px] mx-auto relative z-10">
       {/* Floating particles */}
       <div className="particles">
         {[...Array(20)].map((_, i) => (
@@ -54,26 +56,25 @@ export default function Hero() {
 
           {/* Main heading */}
           <div className="space-y-4">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="text-[var(--color-text)]">Building</span>{' '}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05]">
+              <span className="text-[var(--color-text)]">Hey, I'm Lakshya!</span>{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-secondary)] to-[var(--color-purple)] animate-gradient">
-                scalable
+                AI x Full Stack
               </span>
               <br />
-              <span className="text-[var(--color-text)]">systems</span>
+              <span className="text-[var(--color-text)]">Engineer</span>
             </h1>
             
             <div className="flex items-center gap-3 text-[var(--color-text-muted)] font-mono text-sm">
               <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse"></div>
-              <span>CS • DS • Math @ UW-Madison</span>
+              <span className="text-lg md:text-xl font-bold">CS • DS • Math @ UW-Madison</span>
               <span className="text-[var(--color-border-bright)]">|</span>
-              <span>CTO @ TAM</span>
+              <span className="text-lg md:text-xl font-bold">CTO @ TAM</span>
             </div>
           </div>
 
           <p className="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-[600px]">
-            Triple major student and founder building microservices architectures, AI systems, and 
-            data-driven solutions. From backend engineering to machine learning research.
+            Delivering clean APIs, reliable pipelines, and AI that ships.
           </p>
 
           {/* CTA buttons */}
@@ -93,7 +94,7 @@ export default function Hero() {
               href="#contact"
               className="px-6 py-3 glass rounded-lg font-semibold text-[var(--color-text)] transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-[0_0_20px_var(--color-accent-glow)] flex items-center gap-2"
             >
-              <span>Get in touch</span>
+              <span>Let's meet!</span>
               <span className="text-[var(--color-accent)]">→</span>
             </a>
           </div>
@@ -101,19 +102,20 @@ export default function Hero() {
           {/* Social links - inline */}
           <div className="flex gap-4 pt-6">
             {[
-              { icon: 'GH', label: 'GitHub', href: 'https://github.com/L-Gupta' },
-              { icon: 'LI', label: 'LinkedIn', href: 'https://linkedin.com' },
-              { icon: '@', label: 'Email', href: 'mailto:lgupta22@wisc.edu' },
-            ].map((social) => (
+              { label: 'GitHub', href: 'https://github.com/L-Gupta', Icon: FaGithub, newTab: true, color: 'text-green-500', hover: 'hover:border-green-500 hover:text-green-500' },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/lakshya-gupta-003683329/', Icon: FaLinkedin, newTab: true, color: 'text-blue-500', hover: 'hover:border-blue-500 hover:text-blue-500' },
+              { label: 'Email', href: 'mailto:lgupta22@wisc.edu', Icon: HiOutlineMail, newTab: false, color: 'text-purple-500', hover: 'hover:border-purple-500 hover:text-purple-500' },
+            ].map(({ label, href, Icon, newTab, color, hover }) => (
               <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 glass rounded-lg flex items-center justify-center text-[var(--color-text-muted)] font-bold transition-all duration-300 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)] hover:shadow-[0_0_20px_var(--color-accent-glow)] hover:scale-110"
-                title={social.label}
+                key={label}
+                href={href}
+                target={newTab ? "_blank" : undefined}
+                rel={newTab ? "noopener noreferrer" : undefined}
+                className={`w-12 h-12 glass rounded-lg flex items-center justify-center transition-all duration-300 hover:shadow-[0_0_20px_var(--color-accent-glow)] hover:scale-110 ${color} ${hover}`}
+                title={label}
+                aria-label={label}
               >
-                {social.icon}
+                <Icon className="w-5 h-5" />
               </a>
             ))}
           </div>
@@ -121,39 +123,9 @@ export default function Hero() {
 
         {/* Right Column - Visual */}
         <div className="relative opacity-0 animate-fade-in-right delay-500">
-          {/* Bento-style card grid */}
-          <div className="grid grid-cols-2 gap-4 auto-rows-[180px]">
-            {/* Large card - spans 2 rows */}
-            <div className="bento-card col-span-2 row-span-2 rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
-              <div>
-                <div className="text-sm text-[var(--color-text-muted)] mb-2 font-mono">// Currently building</div>
-                <h3 className="text-xl font-bold text-[var(--color-text)]">Financial Document Automation @ TAM</h3>
-              </div>
-              <div className="flex items-end gap-2">
-                <div className="h-16 w-2 bg-[var(--color-accent)] rounded-full opacity-70"></div>
-                <div className="h-24 w-2 bg-[var(--color-secondary)] rounded-full opacity-70"></div>
-                <div className="h-20 w-2 bg-[var(--color-purple)] rounded-full opacity-70"></div>
-                <div className="h-28 w-2 bg-[var(--color-accent)] rounded-full opacity-70"></div>
-              </div>
-            </div>
-
-            {/* Stats card */}
-            <div className="bento-card rounded-2xl p-6 flex flex-col justify-between">
-              <div className="text-4xl font-bold text-[var(--color-accent)]">3</div>
-              <div className="text-sm text-[var(--color-text-muted)]">Majors at UW-Madison</div>
-            </div>
-
-            {/* Tech stack preview */}
-            <div className="bento-card rounded-2xl p-6 flex flex-col justify-between">
-              <div className="text-xs text-[var(--color-text-muted)] mb-2 font-mono">$ tech --list</div>
-              <div className="flex flex-wrap gap-1">
-                {['Python', 'FastAPI', 'React'].map((tech) => (
-                  <span key={tech} className="text-[10px] px-2 py-1 bg-[var(--color-border)] rounded text-[var(--color-text-muted)]">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+          {/* Big cardholder for future 3D model */}
+          <div className="bento-card rounded-2xl p-16 flex items-center justify-center text-center text-2xl font-bold text-[var(--color-text-muted)] border-2 border-dashed border-[var(--color-accent)] min-h-[400px]">
+            Add 3D model later
           </div>
         </div>
       </div>

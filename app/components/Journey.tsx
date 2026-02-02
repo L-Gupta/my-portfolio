@@ -182,12 +182,11 @@ export default function Journey() {
   };
 
   return (
-    <section id="journey" className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10">
+    <section id="journey" className="py-4 px-6 md:px-12 max-w-[1400px] mx-auto relative z-10">
       {/* Header */}
       <div className="mb-16 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
           <div className="h-[1px] flex-1 bg-[var(--color-border)] max-w-[100px]"></div>
-          <span className="text-[var(--color-accent)] font-mono text-sm">02.</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text)]">
             My <span className="text-[var(--color-accent)]">Journey</span>
           </h2>
