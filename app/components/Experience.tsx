@@ -31,13 +31,14 @@ const experienceData: Experience[] = [
     role: 'AI Intern',
     duration: 'Apr 2025 - Aug 2025',
     location: 'Delhi, India',
-    description: 'Built full-stack AI-powered mock interview platform with real-time analysis and automated reporting.',
+    description: 'Built a full-stack AI-powered mock interview platform with real-time analysis and automated performance reporting.',
     achievements: [
-      'Built full-stack platform with React frontend and FastAPI backend, implementing WebRTC for real-time audio/video capture',
-      'Designed REST API architecture integrating 4 third-party services (Deepgram, facial recognition, LLM validation, vector search)',
-      'Implemented automated PDF report generation with ReportLab, optimizing memory through batched processing and streaming',
+      'Developed intelligent interview system analyzing facial expressions (OpenCV + FER, 7 emotions, 85% accuracy), vocal tone (Librosa MFCC/pitch), and answer validation using RAG with Pinecone + Gemini LLM.',
+      'Architected FastAPI backend processing 100+ concurrent sessions with async pipelines, implementing LangChain agentic AI for autonomous error recovery, improving reliability from 85% to 95%.',
+      'Engineered ML pipelines for real-time transcription (Deepgram), emotion detection, tone classification, and LLM-based resume validation, processing 1,000+ practice interviews',
+      'Built React frontend with WebRTC for video/audio capture and automated PDF report generation with ReportLab, reducing candidate prep time by 40%'
     ],
-    techStack: ['React', 'FastAPI', 'WebRTC', 'Deepgram', 'OpenAI', 'ReportLab'],
+    techStack: ['FastAPI', 'Python', 'Gemini', 'Pinecone', 'Deepgram', 'OpenCV','FER','Librosa','React', 'WebRTC', 'ReportLab', 'LangChain'],
   },
   {
     company: 'Indian Institute of Technology Delhi',

@@ -15,7 +15,7 @@ export default function Highlight() {
               <span className="text-[var(--color-purple)]">const</span> philosophy <span className="text-[var(--color-text-muted)]">=</span> {'{'}
             </div>
             <p className="text-xl md:text-2xl lg:text-3xl text-[var(--color-text)] leading-relaxed font-medium pl-8 italic">
-              "I learn principles, not just solutions.
+              "Don't look back, you aren't going that way.
             </p>
             <div className="text-sm font-mono text-[var(--color-accent)] mt-4">
               {'}'};

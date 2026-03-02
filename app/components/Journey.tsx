@@ -8,6 +8,7 @@ interface Project {
   title: string;
   description: string;
   techStack: string[];
+  bullets?: string[];
 }
 
 interface Milestone {
@@ -20,104 +21,84 @@ const domainData: Record<Exclude<DomainType, null>, { name: string; milestones: 
     name: 'Computer Vision',
     milestones: [
       {
-        label: 'Concepts & Foundations',
+        label: 'Hackathon: MadData 2026',
         project: {
-          title: 'Image Processing Fundamentals',
+          title: ' Peak Physique Predictor',
           description:
-            'Built foundational understanding of image filters, edge detection, and basic transformations using OpenCV.',
-          techStack: ['Python', 'OpenCV', 'NumPy'],
+            'Built a computer vision and agentic AI system that estimates realistic body potential and generates adaptive transformation plans.',
+          bullets: [
+            'Extracted 33 pose landmarks with MediaPipe and engineered structural ratios for frame-aware analysis.',
+            'Predicted natural lean-mass ceiling and timeline confidence bands using FFMI constraints and regression modeling.',
+            'Orchestrated tool-calling coaching agent to adapt workout and nutrition plans by user consistency.',
+          ],
+          techStack: ['Python','MediaPipe','FastAPI','XGBoost','Claude API','Next.js','SQLite'],
         },
       },
       {
-        label: 'Applied Implementation',
+        label: "Learning Project",
         project: {
-          title: 'Real-time Object Detection',
-          description:
-            'Developed a real-time object detection system using YOLO for tracking multiple objects in video streams.',
-          techStack: ['YOLO', 'OpenCV', 'TensorFlow'],
-        },
+          title: 'Dogs vs Cats Image Classifier',
+          description: 
+            'Built a CNN from scratch using PyTorch to classify dog and cat images, prioritizing deep understanding of CV fundamentals over leaderboard accuracy.',
+          bullets: [
+            'Designed a 3-layer CNN with conv, pooling, and fully connected layers trained on 128×128 RGB inputs.',
+            'Implemented a custom PyTorch Dataset class for lazy loading across 25,000 images.',
+            'Tracked train/val loss and accuracy per epoch using BCEWithLogitsLoss and Adam optimizer.',
+          ],
+          techStack: ['Python','PyTorch','torchvision','Pillow'],
+        }
       },
       {
-        label: 'Systems & Integration',
+        label: "Hackathon Prototype",
         project: {
-          title: 'Autonomous Navigation Vision System',
-          description:
-            'Integrated computer vision pipeline with robotics platform for autonomous navigation using depth sensing and object recognition.',
-          techStack: ['ROS', 'OpenCV', 'Point Cloud'],
-        },
-      },
-      {
-        label: 'Research & Scale',
-        project: {
-          title: 'Custom CNN Architecture Research',
-          description:
-            'Designed and trained custom convolutional neural network architectures for specialized image classification tasks with performance optimization.',
-          techStack: ['PyTorch', 'CUDA', 'Model Optimization'],
-        },
+          title: 'OculusMed AI Medical Screener',
+          description: 
+            'End-to-end AI triage system for Diabetic Retinopathy and Tuberculosis detection with explainable Grad-CAM heatmaps and zero PHI storage.',
+          bullets: [
+            'Fine-tuned ResNet50 and EfficientNetB3 on NIH and Kaggle datasets for dual-condition classification.',
+            'Projected Grad-CAM overlays onto infected regions for transparent, clinician-facing decision support.',
+            'Processed all patient images entirely in-memory — no data saved to disk for HIPAA-like compliance.',
+          ],
+          techStack: ['Python','PyTorch','FastAPI','Grad-CAM','Next.js','Docker'],
+        }
       },
     ],
   },
   ml: {
-    name: 'Machine Learning',
+    name: 'Agentic AI & NLP',
     milestones: [
       {
-        label: 'Concepts & Foundations',
+        label: "Hackathon: CheeseHacks 2026",
         project: {
-          title: 'Supervised Learning Algorithms',
-          description:
-            'Implemented core ML algorithms from scratch including linear regression, logistic regression, and decision trees to understand underlying mathematics.',
-          techStack: ['Python', 'NumPy', 'Matplotlib'],
-        },
-      },
-      {
-        label: 'Applied Implementation',
-        project: {
-          title: 'Predictive Analytics System',
-          description:
-            'Developed end-to-end ML pipeline for predictive modeling including data preprocessing, feature engineering, and model evaluation.',
-          techStack: ['Scikit-learn', 'Pandas', 'XGBoost'],
-        },
-      },
-      {
-        label: 'Systems & Integration',
-        project: {
-          title: 'ML Model Deployment Platform',
-          description:
-            'Built production-ready ML model serving infrastructure with API endpoints, monitoring, and automated retraining pipelines.',
-          techStack: ['Flask', 'Docker', 'AWS'],
-        },
+          title: 'Aura Health',
+          description: 
+            'AI-powered healthcare system that autonomously calls patients post-consultation, conducts structured health check-ins, and escalates urgent cases to doctors via SMS.',
+          bullets: [
+            'Streamed bidirectional audio over WebSocket using Twilio, Google STT, Gemini, and Google TTS in real-time.',
+            'Augmented AI conversations with RAG retrieval from consultation PDFs chunked and indexed in Pinecone.',
+            'Classified post-call urgency into low, medium, or high triage levels and triggered doctor SMS alerts automatically.',
+          ],
+          techStack: []
+        }
       },
     ],
   },
   robotics: {
-    name: 'Robotics',
+    name: 'Quantum Computing',
     milestones: [
       {
-        label: 'Concepts & Foundations',
+        label: "Hackathon: Qiskit Quantum Computing Fest 2025",
         project: {
-          title: 'Kinematics & Motion Planning',
-          description:
-            'Studied robot kinematics, path planning algorithms, and control systems fundamentals through simulation environments.',
-          techStack: ['ROS', 'Gazebo', 'Python'],
-        },
-      },
-      {
-        label: 'Applied Implementation',
-        project: {
-          title: 'Line Following Robot',
-          description:
-            'Programmed autonomous line-following robot using sensor fusion and PID control for smooth trajectory tracking.',
-          techStack: ['Arduino', 'C++', 'PID Control'],
-        },
-      },
-      {
-        label: 'Systems & Integration',
-        project: {
-          title: 'Autonomous Navigation System',
-          description:
-            'Integrated SLAM, path planning, and obstacle avoidance for fully autonomous mobile robot navigation in unknown environments.',
-          techStack: ['ROS', 'SLAM', 'LiDAR'],
-        },
+          title: 'BB84 Quantum Key Distribution System',
+          description: 
+            'Full-stack implementation of the BB84 quantum cryptography protocol with eavesdropper simulation and automatic security detection via QBER threshold analysis.',
+          bullets: [
+            'Simulated qubit preparation across Z/X bases with configurable intercept-resend eavesdropper attacks.',
+            'Implemented all 6 protocol steps: preparation, transmission, measurement, sifting, error estimation, and privacy amplification.',
+            'Built 65+ unit tests; flags channel as compromised when QBER exceeds the 11% security threshold.'
+          ],
+          techStack: ['Python', 'FastAPI ', 'NumPy ', 'pytest', 'React', 'Recharts'],
+        }
       },
     ],
   },
@@ -125,30 +106,17 @@ const domainData: Record<Exclude<DomainType, null>, { name: string; milestones: 
     name: 'Web Development',
     milestones: [
       {
-        label: 'Concepts & Foundations',
+        label: 'Personal Project',
         project: {
-          title: 'Full-Stack Fundamentals',
+          title: 'Library Management System',
           description:
-            'Learned modern web development fundamentals including HTML, CSS, JavaScript, and RESTful API design principles.',
-          techStack: ['HTML/CSS', 'JavaScript', 'Node.js'],
-        },
-      },
-      {
-        label: 'Applied Implementation',
-        project: {
-          title: 'Interactive Data Visualization Dashboard',
-          description:
-            'Built responsive web application for visualizing complex datasets with interactive charts and real-time updates.',
-          techStack: ['React', 'D3.js', 'Express'],
-        },
-      },
-      {
-        label: 'Systems & Integration',
-        project: {
-          title: 'Full-Stack ML Application',
-          description:
-            'Developed complete web application integrating machine learning models with modern frontend, backend API, and database systems.',
-          techStack: ['Next.js', 'PostgreSQL', 'TensorFlow.js'],
+            'Full-stack library management dashboard with MySQL backend, OOP architecture, fine calculation logic, and real-time analytics built with Streamlit and Plotly.',
+          bullets: [
+            'Designed 4-table normalized MySQL schema with foreign key constraints and parameterized queries to prevent SQL injection.',
+            'Implemented automatic late-return penalty engine: flat ₹100 for 1–7 days, ₹20/day beyond that.',
+            'Built a 5-page Streamlit dashboard with interactive Plotly charts for inventory, member, and transaction analytics.',
+          ],
+          techStack: ['Python', 'MySQL', 'Streamlit','Pandas','Plotly'],
         },
       },
     ],
@@ -233,7 +201,7 @@ export default function Journey() {
 
               {/* Milestones */}
               {domainData[domain].milestones.map((milestone, index) => (
-                <div key={index} className="relative py-12 mb-8">
+                <div key={index} className="relative py-6 mb-4">
                   {/* Milestone Marker */}
                   <div className="absolute left-1/2 top-12 w-5 h-5 bg-[var(--color-accent)] border-4 border-[var(--color-bg)] rounded-full -translate-x-1/2 z-10 shadow-[0_0_20px_var(--color-accent-glow)]" />
 
@@ -242,7 +210,7 @@ export default function Journey() {
                     className={`relative ${
                       index % 2 === 0
                         ? 'pl-[calc(50%+3rem)] pr-0'
-                        : 'pr-[calc(50%+3rem)] pl-0 text-right'
+                        : 'pr-[calc(50%+3rem)] pl-0'
                     }`}
                   >
                     <div className="text-[var(--color-accent)] font-mono text-sm font-bold mb-3 flex items-center gap-2">
@@ -258,7 +226,6 @@ export default function Journey() {
                         </>
                       )}
                     </div>
-
                     {/* Project Card */}
                     <div className="bento-card p-6 rounded-xl group">
                       <h4 className="text-xl font-bold text-[var(--color-text)] mb-3 group-hover:text-[var(--color-accent)] transition-colors">
@@ -267,6 +234,15 @@ export default function Journey() {
                       <p className="text-[var(--color-text-muted)] leading-relaxed mb-4 text-sm">
                         {milestone.project.description}
                       </p>
+                      {milestone.project.bullets && milestone.project.bullets.length > 0 && (
+                        <ul className="mb-4 text-[var(--color-text-muted)] text-sm space-y-2">
+                          {milestone.project.bullets.map((point, pointIndex) => (
+                            <li key={pointIndex} className="leading-relaxed">
+                              - {point}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                       <div className="flex gap-2 flex-wrap">
                         {milestone.project.techStack.map((tech, techIndex) => (
                           <span
