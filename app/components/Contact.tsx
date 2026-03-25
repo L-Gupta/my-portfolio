@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
@@ -9,31 +9,56 @@ export default function Contact() {
     name: '',
     email: '',
     message: '',
+    website: '',
   });
   const [formStatus, setFormStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus({ type: null, message: '' });
 
-    // Placeholder - no actual backend
-    setFormStatus({
-      type: 'success',
-      message: 'Message received! I\'ll get back to you soon.',
-    });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+      const result = await response.json();
 
-    // Hide message after 5 seconds
+      if (!response.ok) {
+        throw new Error(result?.error || 'Failed to send message. Please try again.');
+      }
+
+      setFormStatus({
+        type: 'success',
+        message: 'Message sent successfully! I will get back to you soon.',
+      });
+
+      setFormData({ name: '', email: '', message: '', website: '' });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+      setFormStatus({
+        type: 'error',
+        message,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+
     setTimeout(() => {
       setFormStatus({ type: null, message: '' });
     }, 5000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -165,6 +190,18 @@ export default function Contact() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Honeypot anti-spam field */}
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
+
             {/* Form Message */}
             {formStatus.type && (
               <div
@@ -232,14 +269,15 @@ export default function Contact() {
             {/* Submit Button */}
             <button
               type="submit"
+              disabled={isSubmitting}
               className="w-full px-6 py-4 bg-[var(--color-accent)] text-[var(--color-bg)] font-bold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_var(--color-accent-glow)] hover:scale-[1.02] font-mono flex items-center justify-center gap-2 group"
             >
-              <span>send_message()</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <span>{isSubmitting ? 'sending...' : 'send_message()'}</span>
+              {!isSubmitting && <span className="group-hover:translate-x-1 transition-transform">→</span>}
             </button>
 
             <p className="text-xs text-[var(--color-text-muted)] text-center font-mono">
-              // Form is a placeholder. Backend integration needed.
+              // Your message goes directly to my inbox.
             </p>
           </form>
         </div>
