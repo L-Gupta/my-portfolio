@@ -6,6 +6,8 @@ export const runtime = 'nodejs';
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const RATE_LIMIT_WINDOW_MS = 30_000;
+const ipRequestMap = new Map<string, number>();
 
 const escapeHtml = (value: string): string =>
   value
@@ -25,6 +27,21 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
+    const userAgent = request.headers.get('user-agent') || 'unknown';
+    const timestamp = new Date().toISOString();
+
+    const lastRequestAt = ipRequestMap.get(ip);
+    if (lastRequestAt && Date.now() - lastRequestAt < RATE_LIMIT_WINDOW_MS) {
+      return NextResponse.json(
+        { error: 'Please wait 30 seconds before sending another message.' },
+        { status: 429 }
+      );
+    }
+    ipRequestMap.set(ip, Date.now());
 
     const name = typeof body?.name === 'string' ? body.name.trim() : '';
     const email = typeof body?.email === 'string' ? body.email.trim() : '';
@@ -50,9 +67,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!message || message.length > 5000) {
+    if (!message || message.length > 2000) {
       return NextResponse.json(
-        { error: 'Please provide a message (1-5000 characters).' },
+        { error: 'Please provide a message (1-2000 characters).' },
         { status: 400 }
       );
     }
@@ -70,6 +87,9 @@ export async function POST(request: Request) {
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
+    const safeIp = escapeHtml(ip);
+    const safeUserAgent = escapeHtml(userAgent);
+    const safeTimestamp = escapeHtml(timestamp);
 
     const { error } = await resend.emails.send({
       from: fromEmail,
@@ -82,8 +102,12 @@ export async function POST(request: Request) {
         <p><strong>Email:</strong> ${safeEmail}</p>
         <p><strong>Message:</strong></p>
         <p>${safeMessage}</p>
+        <hr />
+        <p><strong>Timestamp:</strong> ${safeTimestamp}</p>
+        <p><strong>IP:</strong> ${safeIp}</p>
+        <p><strong>User Agent:</strong> ${safeUserAgent}</p>
       `,
-      text: `New Contact Form Submission\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      text: `New Contact Form Submission\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nTimestamp: ${timestamp}\nIP: ${ip}\nUser Agent: ${userAgent}`,
     });
 
     if (error) {
@@ -93,6 +117,12 @@ export async function POST(request: Request) {
         { status: 502 }
       );
     }
+
+    console.log('Contact email sent:', {
+      from: email,
+      ip,
+      timestamp,
+    });
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

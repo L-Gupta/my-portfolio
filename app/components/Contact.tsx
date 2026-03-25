@@ -260,6 +260,7 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 required
+                maxLength={2000}
                 rows={6}
                 className="w-full px-4 py-3 bg-[var(--color-bg-elevated)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] font-mono text-sm focus:outline-none focus:border-[var(--color-accent)] transition-all resize-y placeholder:text-[var(--color-text-muted)]"
                 placeholder="Your message..."
