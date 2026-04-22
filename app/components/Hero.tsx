@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
@@ -123,9 +124,15 @@ export default function Hero() {
 
         {/* Right Column - Visual */}
         <div className="relative opacity-0 animate-fade-in-right delay-500">
-          {/* Big cardholder for future 3D model */}
-          <div className="bento-card rounded-2xl p-16 flex items-center justify-center text-center text-2xl font-bold text-[var(--color-text-muted)] border-2 border-dashed border-[var(--color-accent)] min-h-[400px]">
-            Add 3D model later
+          <div className="bento-card rounded-2xl overflow-hidden flex items-center justify-center min-h-[400px]">
+            <Image
+              src="/hero-profile.png"
+              alt="Lakshya Gupta"
+              width={500}
+              height={500}
+              className="w-full h-full object-cover rounded-2xl"
+              priority
+            />
           </div>
         </div>
       </div>
