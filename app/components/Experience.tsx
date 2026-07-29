@@ -1,30 +1,36 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import type { Experience as ExperienceItem } from './ExperienceCard';
+import { ExperienceCard } from './ExperienceCard';
 
-interface Experience {
-  company: string;
-  role: string;
-  duration: string;
-  location: string;
-  description: string;
-  achievements: string[];
-  techStack: string[];
-}
-
-const experienceData: Experience[] = [
+const experienceData: ExperienceItem[] = [
   {
-    company: 'TAM',
-    role: 'CTO & Co-Founder',
-    duration: 'Oct 2025 - Present',
-    location: 'Madison, WI',
-    description: 'Leading technical development for a financial document automation platform using microservices architecture.',
+    company: 'Proclink',
+    role: 'AI Intern',
+    duration: 'Jun 2026 - Present',
+    location: 'Hyderabad, India (Remote)',
+    description: 'Working within the Microsoft Foundry repository to build conversational AI skills and lead the migration of the existing Copilot SDK-based architecture to Microsoft Azure AI Foundry.',
     achievements: [
-      'Designed microservices architecture using FastAPI, Celery, Redis, and PostgreSQL for automated financial document processing at scale',
-      'Led team of 3 developers implementing async pipelines with retry logic and rate limiting, achieving ~35% faster document review throughput',
-      'Integrated third-party APIs (Tesseract OCR, OpenAI GPT, spaCy NLP) with fallback strategies and structured data extraction for 100+ page packages',
+      'Studying and mapping the Microsoft Foundry repository structure to understand its existing Copilot SDK integration and conversational architecture',
+      'Designing and generating AI skills for conversational use cases within the Foundry framework',
+      'Leading the conversion of the existing Copilot SDK-based implementation over to Microsoft Azure AI Foundry services',
     ],
-    techStack: ['FastAPI', 'Celery', 'Redis', 'PostgreSQL', 'Python', 'Microservices'],
+    techStack: ['Microsoft Azure', 'Azure AI Foundry', 'Copilot SDK', 'Python', 'Conversational AI'],
+  },
+  {
+    company: 'Adopt AI — NoUI (Open Source)',
+    role: 'Open Source Contributor',
+    duration: 'Apr 2026 - Present',
+    location: 'Remote',
+    description: 'Contributed a reliability and developer-experience pass over NoUI\'s compiler/export path and Tabby CLI setup path across 3 merged PRs, tightening validation, improving failure messages, and aligning CLI environment loading with backend behavior.',
+    achievements: [
+      'Introduced HarValidationError at the compiler boundary, converting invalid or non-API HAR captures into clear HTTP 422 errors and preventing failed exports from silently writing empty MCP or Skill artifacts',
+      'Translated Tabby transport failures into actionable runtime errors, surfaced the last polling error from `noui login validate`, and fixed `noui login register` to print the correct profile slug under "Tabby profile ID"',
+      'Built `cli/env.py` as the CLI\'s source of truth for loading repo-root `.env` and resolving `TABBY_API_HOST`, including scheme normalization and trailing-slash cleanup to match backend configuration',
+      'Backed each change with scoped test coverage (25+ new tests across `test_cli_tabby.py` and `test_cli_env.py`) and validated locally with ruff, ruff format, mypy, and the affected pytest suites',
+    ],
+    techStack: ['Python', 'FastAPI', 'CLI Tooling', 'pytest', 'mypy', 'ruff'],
   },
   {
     company: 'Webuters Technology',
@@ -39,19 +45,6 @@ const experienceData: Experience[] = [
       'Built React frontend with WebRTC for video/audio capture and automated PDF report generation with ReportLab, reducing candidate prep time by 40%'
     ],
     techStack: ['FastAPI', 'Python', 'Gemini', 'Pinecone', 'Deepgram', 'OpenCV','FER','Librosa','React', 'WebRTC', 'ReportLab', 'LangChain'],
-  },
-  {
-    company: 'Indian Institute of Technology Delhi',
-    role: 'Research Intern',
-    duration: 'May 2025 - Aug 2025',
-    location: 'Delhi, India',
-    description: 'Conducted research on computer vision classification and medical prediction systems using machine learning.',
-    achievements: [
-      'Reproduced baseline drosophila gender classification model and identified data leakage issue, applied 10% zoom preprocessing fix improving accuracy by ~5%',
-      'Built clinical UTI prediction pipeline using real-world lab data, comparing unsupervised methods with tabular LLMs',
-      'Benchmarked 5 ML models (TabPFN, TAPEX, GraPPa, BERT, Gemini API) on tabular data, analyzing accuracy/latency trade-offs',
-    ],
-    techStack: ['Python', 'Keras/PyTorch', 'NumPy', 'Scikit-learn', 'Data Processing'],
   },
 ];
 
@@ -101,78 +94,7 @@ export default function Experience() {
       {/* Experience Cards */}
       <div className="space-y-8 max-w-[1000px] mx-auto">
         {experienceData.map((exp, index) => (
-          <div
-            key={index}
-            className="bento-card rounded-2xl p-8 accent-bar group"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transition: `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`,
-            }}
-          >
-            {/* Header Row */}
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
-                    {exp.company}
-                  </h3>
-                </div>
-                <p className="text-lg text-[var(--color-accent)] font-mono mb-1">
-                  {exp.role}
-                </p>
-                <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--color-text-muted)] font-mono">
-                  <span className="flex items-center gap-1">
-                    <span className="text-[var(--color-accent)]">📅</span> {exp.duration}
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <span className="text-[var(--color-accent)]">📍</span> {exp.location}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-[var(--color-text-muted)] leading-relaxed mb-4">
-              {exp.description}
-            </p>
-
-            {/* Achievements */}
-            <div className="mb-6">
-              <h4 className="text-sm font-mono text-[var(--color-accent)] mb-3">
-                // Key achievements
-              </h4>
-              <ul className="space-y-2">
-                {exp.achievements.map((achievement, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 text-[var(--color-text-muted)] text-sm"
-                  >
-                    <span className="text-[var(--color-accent)] mt-1 flex-shrink-0">▸</span>
-                    <span className="leading-relaxed">{achievement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Tech Stack */}
-            <div>
-              <h4 className="text-sm font-mono text-[var(--color-text-muted)] mb-3">
-                Tech Stack:
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {exp.techStack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1.5 bg-[var(--color-bg-elevated)] border border-[var(--color-border)] rounded-md text-xs text-[var(--color-text-muted)] font-mono hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+          <ExperienceCard key={index} exp={exp} index={index} isVisible={isVisible} />
         ))}
       </div>
 

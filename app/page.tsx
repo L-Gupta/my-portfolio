@@ -9,6 +9,8 @@ import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Experience from './components/Experience';
+import StartUps from './components/StartUps';
+import ResearchExperience from './components/ResearchExperience';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -27,6 +29,10 @@ export default function Home() {
       <About />
       <div style={{ marginBottom: '16pt' }} />
       <Experience />
+      <div style={{ marginBottom: '16pt' }} />
+      <StartUps />
+      <div style={{ marginBottom: '16pt' }} />
+      <ResearchExperience />
       <div style={{ marginBottom: '16pt' }} />
       <Journey />
       <Contact />
