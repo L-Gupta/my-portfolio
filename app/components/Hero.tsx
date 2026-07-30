@@ -69,8 +69,6 @@ export default function Hero() {
             <div className="flex items-center gap-3 text-[var(--color-text-muted)] font-mono text-sm">
               <div className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse"></div>
               <span className="text-lg md:text-xl font-bold">CS • DS • Math @ UW-Madison</span>
-              <span className="text-[var(--color-border-bright)]">|</span>
-              <span className="text-lg md:text-xl font-bold">CTO @ TAM</span>
             </div>
           </div>
 
