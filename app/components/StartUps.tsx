@@ -30,6 +30,11 @@ const startUpsData: Experience[] = [
       'Integrated third-party APIs (Tesseract OCR, OpenAI GPT, spaCy NLP) with fallback strategies and structured data extraction for 100+ page packages',
     ],
     techStack: ['FastAPI', 'Celery', 'Redis', 'PostgreSQL', 'Python', 'Microservices'],
+    stats: [
+      { value: '35%', label: 'faster review throughput' },
+      { value: '3', label: 'developers led' },
+      { value: '100+', label: 'page packages processed' },
+    ],
   },
 ];
 

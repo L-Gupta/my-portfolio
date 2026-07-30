@@ -35,20 +35,6 @@ const domainData: Record<Exclude<DomainType, null>, { name: string; milestones: 
         },
       },
       {
-        label: "Learning Project",
-        project: {
-          title: 'Dogs vs Cats Image Classifier',
-          description: 
-            'Built a CNN from scratch using PyTorch to classify dog and cat images, prioritizing deep understanding of CV fundamentals over leaderboard accuracy.',
-          bullets: [
-            'Designed a 3-layer CNN with conv, pooling, and fully connected layers trained on 128×128 RGB inputs.',
-            'Implemented a custom PyTorch Dataset class for lazy loading across 25,000 images.',
-            'Tracked train/val loss and accuracy per epoch using BCEWithLogitsLoss and Adam optimizer.',
-          ],
-          techStack: ['Python','PyTorch','torchvision','Pillow'],
-        }
-      },
-      {
         label: "Hackathon Prototype",
         project: {
           title: 'OculusMed AI Medical Screener',
@@ -60,6 +46,20 @@ const domainData: Record<Exclude<DomainType, null>, { name: string; milestones: 
             'Processed all patient images entirely in-memory — no data saved to disk for HIPAA-like compliance.',
           ],
           techStack: ['Python','PyTorch','FastAPI','Grad-CAM','Next.js','Docker'],
+        }
+      },
+      {
+        label: "Learning Project",
+        project: {
+          title: 'Dogs vs Cats Image Classifier',
+          description: 
+            'Built a CNN from scratch using PyTorch to classify dog and cat images, prioritizing deep understanding of CV fundamentals over leaderboard accuracy.',
+          bullets: [
+            'Designed a 3-layer CNN with conv, pooling, and fully connected layers trained on 128×128 RGB inputs.',
+            'Implemented a custom PyTorch Dataset class for lazy loading across 25,000 images.',
+            'Tracked train/val loss and accuracy per epoch using BCEWithLogitsLoss and Adam optimizer.',
+          ],
+          techStack: ['Python','PyTorch','torchvision','Pillow'],
         }
       },
     ],

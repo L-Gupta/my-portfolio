@@ -31,6 +31,12 @@ const experienceData: ExperienceItem[] = [
       'Backed each change with scoped test coverage (25+ new tests across `test_cli_tabby.py` and `test_cli_env.py`) and validated locally with ruff, ruff format, mypy, and the affected pytest suites',
     ],
     techStack: ['Python', 'FastAPI', 'CLI Tooling', 'pytest', 'mypy', 'ruff'],
+    stats: [
+      { value: '3', label: 'PRs merged' },
+      { value: '25+', label: 'tests added' },
+      { value: '12', label: 'files changed' },
+    ],
+    diffStat: { insertions: 775, deletions: 18, label: '3 PRs merged' },
   },
   {
     company: 'Webuters Technology',
@@ -45,6 +51,11 @@ const experienceData: ExperienceItem[] = [
       'Built React frontend with WebRTC for video/audio capture and automated PDF report generation with ReportLab, reducing candidate prep time by 40%'
     ],
     techStack: ['FastAPI', 'Python', 'Gemini', 'Pinecone', 'Deepgram', 'OpenCV','FER','Librosa','React', 'WebRTC', 'ReportLab', 'LangChain'],
+    stats: [
+      { value: '100+', label: 'interviews processed' },
+      { value: '90%', label: 'pipeline reliability' },
+      { value: '40%', label: 'faster candidate prep' },
+    ],
   },
 ];
 

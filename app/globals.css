@@ -306,3 +306,14 @@ body::after {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+
+/* Collapsible experience card details */
+.collapse-transition {
+  transition: max-height 0.25s ease, margin-top 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collapse-transition {
+    transition: none;
+  }
+}

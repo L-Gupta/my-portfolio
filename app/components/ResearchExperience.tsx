@@ -28,6 +28,10 @@ const researchExperienceData: Experience[] = [
       'Benchmarked 5 ML models (TabPFN, TAPEX, GraPPa, BERT, Gemini API) on tabular data, analyzing accuracy/latency trade-offs',
     ],
     techStack: ['Python', 'Keras/PyTorch', 'NumPy', 'Scikit-learn', 'Data Processing'],
+    stats: [
+      { value: '~85%', label: 'accuracy achieved' },
+      { value: '15+', label: 'ML models tested and benchmarked' },
+    ],
   },
 ];
 
