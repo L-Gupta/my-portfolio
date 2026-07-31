@@ -18,14 +18,14 @@ const researchExperienceData: Experience[] = [
   },
   {
     company: 'Indian Institute of Technology Delhi',
-    role: 'Research Intern',
+    role: 'Research Intern, mentored by Prof. Ishaan Gupta',
     duration: 'May 2025 - Aug 2025',
     location: 'Delhi, India',
     description: 'Conducted research on computer vision classification and medical prediction systems using machine learning.',
     achievements: [
       'Reproduced baseline drosophila gender classification model and identified data leakage issue, applied 10% zoom preprocessing fix improving accuracy by ~5%',
       'Built clinical UTI prediction pipeline using real-world lab data, comparing unsupervised methods with tabular LLMs',
-      'Benchmarked 5 ML models (TabPFN, TAPEX, GraPPa, BERT, Gemini API) on tabular data, analyzing accuracy/latency trade-offs',
+      'Benchmarked 15+ ML models (TabPFN, TAPEX, GraPPa, BERT, Gemini API, etc.) on tabular data, analyzing accuracy/latency trade-offs',
     ],
     techStack: ['Python', 'Keras/PyTorch', 'NumPy', 'Scikit-learn', 'Data Processing'],
     stats: [

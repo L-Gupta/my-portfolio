@@ -22,7 +22,7 @@ const experienceData: ExperienceItem[] = [
     company: 'Adopt AI — NoUI (Open Source)',
     role: 'Open Source Contributor',
     duration: 'Apr 2026 - Present',
-    location: 'Remote',
+    location: 'San Francisco, USA (Remote)',
     description: 'Contributed a reliability and developer-experience pass over NoUI\'s compiler/export path and Tabby CLI setup path across 3 merged PRs, tightening validation, improving failure messages, and aligning CLI environment loading with backend behavior.',
     achievements: [
       'Introduced HarValidationError at the compiler boundary, converting invalid or non-API HAR captures into clear HTTP 422 errors and preventing failed exports from silently writing empty MCP or Skill artifacts',

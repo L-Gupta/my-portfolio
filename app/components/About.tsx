@@ -26,6 +26,21 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
+  const gitLog = [
+    { hash: '3c88b71', age: 5, message: 'Became a cricket fanatic. Every format, every series, no exceptions — still true today.' },
+    { hash: '7f3a9c2', age: 6, message: 'Learned to play chess. Immediately started losing on purpose just to see what happens.' },
+    { hash: 'a91e0d4', age: 12, message: "Picked up a tennis racket. Still can't serve straight." },
+    { hash: 'e04f6a8', age: 15, message: 'Started arguing with chess engines. Lose gracefully, still in beta.' },
+  ];
+
+  const traitPills = [
+    { label: 'Full-Stack Dev', quirky: false },
+    { label: 'Founder', quirky: false },
+    { label: 'Michelin guide, but for street food', quirky: true },
+    { label: 'Backhand > backend', quirky: true },
+    { label: 'Rated higher in chess than in sleep schedule', quirky: true },
+  ];
+
   const skills = {
     Languages: ['Python', 'Java', 'JavaScript', 'SQL/MySQL', 'R'],
     'Data Science & ML': [
@@ -75,33 +90,52 @@ export default function About() {
         <div className="lg:col-span-2 bento-card rounded-2xl p-8 space-y-6 accent-bar">
           <div>
             <div className="text-sm font-mono text-[var(--color-text-muted)] mb-2">// whoami</div>
-            <h3 className="text-2xl font-bold text-[var(--color-text)] mb-4">Triple Major @ UW-Madison</h3>
+            <h3 className="text-2xl font-bold text-[var(--color-text)] mb-4 leading-snug">
+              Still debugging <span className="text-[var(--color-accent)]">who I am</span>, but the tests are passing.
+            </h3>
           </div>
-          
+
           <div className="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
             <p>
-              I'm pursuing a triple major in Computer Science, Data Science, and Mathematics at UW-Madison. 
-              My passion lies in building scalable systems and leveraging machine learning to solve real-world problems.
+              So, a little about me: I grew up in Delhi, India, which means I was raised on street food so good it should honestly require a permit. I have opinions on the subject and I will not be taking questions.
             </p>
             <p>
-              From co-founding TAM and building microservices architectures to conducting research at IIT Delhi 
-              on computer vision and medical prediction models, I love working at the intersection of backend 
-              engineering, data science, and AI.
-            </p>
-            <p>
-              Whether it's optimizing distributed task queues, implementing quantum cryptography protocols, or 
-              building full-stack applications, I approach each project with a focus on robust engineering and 
-              measurable impact.
+              Off the keyboard, cricket is basically a religion I practice — I follow every match, every format, no exceptions. Tennis and chess are the weekly hobbies, mostly so I can practice losing gracefully, a skill still very much in beta. I'd love to say I bring the same focus to all three that I bring to my code — but let's be honest, the code wins that one.
             </p>
           </div>
 
+          {/* Git log timeline */}
+          <div className="pt-4 border-t border-[var(--color-border)]">
+            <div className="text-sm font-mono text-[var(--color-accent)] mb-5">// git log --personal</div>
+            <div className="relative pl-[22px]">
+              <div className="absolute left-[5px] top-1.5 bottom-1.5 w-px bg-[var(--color-border)]" />
+              <div className="space-y-5">
+                {gitLog.map((entry, i) => (
+                  <div key={i} className="relative">
+                    <div className="absolute -left-[22px] top-1 w-[9px] h-[9px] rounded-full bg-[var(--color-accent)] border-2 border-[var(--color-bg)]" />
+                    <div className="text-xs font-mono text-[var(--color-accent)] mb-1">
+                      {entry.hash} <span className="text-[var(--color-text-muted)]">(age {entry.age})</span>
+                    </div>
+                    <div className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+                      {entry.message}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-wrap gap-2 pt-4">
-            {['Full-Stack Dev', 'ML Engineer', 'System Architect', 'Founder'].map((tag) => (
+            {traitPills.map((pill) => (
               <span
-                key={tag}
-                className="px-3 py-1.5 bg-[var(--color-bg-elevated)] border border-[var(--color-border)] rounded-full text-xs text-[var(--color-text-muted)] font-mono"
+                key={pill.label}
+                className={`px-3 py-1.5 border rounded-full text-xs font-mono ${
+                  pill.quirky
+                    ? 'bg-[var(--color-bg-elevated)] border-[#1c3d2f] text-[var(--color-accent)]'
+                    : 'bg-[var(--color-bg-elevated)] border-[var(--color-border)] text-[var(--color-text-muted)]'
+                }`}
               >
-                {tag}
+                {pill.label}
               </span>
             ))}
           </div>
